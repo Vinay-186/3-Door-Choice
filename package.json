@@ -1,0 +1,34 @@
+{
+  "name": "3-door-choice",
+  "version": "1.0.0",
+  "description": "An interactive web-based game that challenges players to make the smart choices among 3 doors on each level.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinay-186/3-door-choice.git"
+  },
+  "keywords": [
+    "puzzle",
+    "3-doors",
+    "doors",
+    "door"
+  ],
+  "author": "Vinay Datir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vinay-186/3-door-choice/issues"
+  },
+  "homepage": "https://github.com/Vinay-186/3-door-choice#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "mongodb": "^5.2.0",
+    "mongoose": "^7.0.4",
+    "path": "^0.12.7"
+  }
+}
