@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
 
-const port = process.env.port || 3000;
+const port = 3000;
 app.get('/', (req, res) =>{
     res.render('home');
 })
