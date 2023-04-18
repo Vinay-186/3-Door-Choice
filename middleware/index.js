@@ -1,54 +1,39 @@
-const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 const middleware = {
-  loggedin: (req, res, next) => {
-    const token = req.header('x-auth-token');
-    if (!token) {
-      req.flash("Warning", "Login first to continue");
-      return res.redirect('/auth/login');
-    }
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = decoded.user;
+  isLoggedIn: (req, res, next) => {
+    if (req.isAuthenticated()) {
+      // If user is authenticated with Passport
       return next();
-    } catch (err) {
-      // Handle JWT verification error
-      req.flash("Warning", "Invalid token");
-      return res.redirect('/auth/login');
+    } else {
+      req.flash("warning", "Please log in first.");
+      res.redirect("/auth/login");
     }
   },
 
-  notloggedin: (req, res, next) => {
-    if (req.user) {
-      req.flash('Warning', 'Please logout to login');
+  isNotLoggedIn: (req, res, next) => {
+    if (!req.isAuthenticated()) {
+      // If user is not authenticated with Passport
+      return next();
+    } else {
+      req.flash("warning", "Please log out to log in.");
       if (req.user.isAdmin) {
         return res.redirect('/admin/dashboard');
       } else {
         return res.redirect('/user/dashboard');
       }
     }
-    return next();
   },
 
   ensureAdmin: (req, res, next) => {
-    const token = req.header('x-auth-token');
-    if (!token) {
-      req.flash("Warning", "Login first to continue");
-      return res.redirect('/auth/login');
-    }
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = decoded.user;
-      if (!req.user.isAdmin) {
-        req.flash('Warning', 'You are not the Admin!');
-        return res.redirect('/admin/dashboard'); // Redirect to a default URL or display an error message
-      }
+    if (req.isAuthenticated() && req.user.isAdmin) {
+      // If user is authenticated with Passport and is an admin
       return next();
-    } catch (err) {
-      // Handle JWT verification error
-      req.flash("Warning", "Invalid token");
-      return res.redirect('/auth/login');
+    } else {
+      req.flash('warning', 'You are not an admin!');
+      return res.redirect('/admin/dashboard');
     }
   }
 };
+
 module.exports = middleware;
