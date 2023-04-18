@@ -23,12 +23,17 @@
   },
   "homepage": "https://github.com/Vinay-186/3-door-choice#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "method-override": "^3.0.0",
     "mongodb": "^5.2.0",
     "mongoose": "^7.0.4",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
     "path": "^0.12.7"
   }
 }
