@@ -1,7 +1,5 @@
-const passport = require('passport');
-
 const middleware = {
-  isLoggedIn: (req, res, next) => {
+  loggedIn: (req, res, next) => {
     if (req.isAuthenticated()) {
       // If user is authenticated with Passport
       return next();
@@ -11,28 +9,29 @@ const middleware = {
     }
   },
 
-  isNotLoggedIn: (req, res, next) => {
-    if (!req.isAuthenticated()) {
-      // If user is not authenticated with Passport
-      return next();
-    } else {
-      req.flash("warning", "Please log out to log in.");
+  notLoggedIn: (req, res, next) => {
+    if(req.isAuthenticated()){
+      req.flash("warning", "Please log out first");
       if (req.user.isAdmin) {
         return res.redirect('/admin/dashboard');
       } else {
-        return res.redirect('/user/dashboard');
+        return res.redirect(`/${req.user.userName}/dashboard`);
       }
     }
+    return next();
   },
 
   ensureAdmin: (req, res, next) => {
-    if (req.isAuthenticated() && req.user.isAdmin) {
-      // If user is authenticated with Passport and is an admin
-      return next();
-    } else {
-      req.flash('warning', 'You are not an admin!');
-      return res.redirect('/admin/dashboard');
-    }
+    if(req.isUnauthenticated()) {
+			req.session.returnTo = req.originalUrl;
+			req.flash("warning", "Please log in first to continue");
+			return res.redirect("/auth/login");
+		}
+		if(!req.user.isAdmin) {
+			req.flash("warning", "This route is allowed for admin only!!");
+			return res.redirect("back");
+		}
+		return next();
   }
 };
 

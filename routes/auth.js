@@ -3,14 +3,12 @@ const router = express.Router();
 const User = require('../models/user.js');
 const middleware = require('../middleware/index.js');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const passport = require('passport');
-
-router.get('/auth/signup', middleware.notloggedin, (req,res) =>{
+router.get('/auth/signup', middleware.notLoggedIn, (req,res) =>{
     res.render('auth/signup', {title : 'Sign Up'});
 });
 
-router.post('/auth/signup', middleware.notloggedin, async (req, res)=>{
+router.post('/auth/signup', middleware.notLoggedIn, async (req, res)=>{
     const {userName, email,passw1,passw2} = req.body;
     let err = [];
     if(!userName || !email || !passw1|| !passw2){
@@ -51,62 +49,31 @@ router.post('/auth/signup', middleware.notloggedin, async (req, res)=>{
     }
 });
 
-router.get('/auth/login', middleware.notloggedin, (req, res) =>{
+router.get('/auth/login', middleware.notLoggedIn, (req, res) =>{
     res.render('auth/login', {title : 'User Login'});
 });
 
-router.post('/auth/login', middleware.notloggedin, async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            req.flash('error', 'Invalid email or password');
-            return res.redirect('/auth/login');
+router.post("/auth/login", middleware.notLoggedIn,
+	passport.authenticate('local', {
+		failureRedirect: "/auth/login",
+		failureFlash: true,
+		successFlash: true
+	}), (req,res) => {
+        if(req.user.isAdmin){
+            res.redirect(req.session.returnTo || `/admin/dashboard`);
         }
+        else res.redirect(req.session.returnTo || `/${req.user.userName}/dashboard`);
+	}
+);
 
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            req.flash('error', 'Invalid email or password');
-            return res.redirect('/auth/login');
-        }
-
-        const payload = {
-            id: user.id,
-            email: user.email,
-            userName: user.userName,
-            isAdmin: user.isAdmin
-        };
-
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' });
-
-        res.cookie('jwt', token, {
-            expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production' ? true : false
+    router.get('/auth/logout', (req, res) => {
+        req.logout((err) => {
+          if (err) {
+            console.error(err);
+          }
+          req.flash('success', 'Logged out successfully');
+          res.redirect('/auth/login');
         });
-
-        req.flash('success', 'Logged in successfully');
-        res.redirect(`/${user.role}/dashboard`);
-    } catch (err) {
-        console.error(err);
-        req.flash('error', 'Something went wrong. Please try again');
-        res.redirect('/auth/login');
-    }
-});
-
-router.get('/auth/logout', (req, res) => {
-    res.clearCookie('jwt');
-    req.flash
-    ('success', 'Logged out successfully');
-    res.redirect('/auth/login');
-    });
-    
-    // Protected route
-    router.get('/dashboard', middleware.isLoggedIn, (req, res) => {
-    // Access authenticated user data from req.user
-    const user = req.user;
-    res.render('dashboard', { title: 'Dashboard', user });
-    });
-    
+      });
+      
 module.exports = router;
