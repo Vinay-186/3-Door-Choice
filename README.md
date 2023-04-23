@@ -2,6 +2,9 @@
 An interactive web-based game that challenges players to make the smart choices among 3 doors on each level.
 ## Table of Contents
 * [Features](#features)
+* [Features](#admin-features)
+* [Features](#user-features)
+* [Features](#feature-list)
 * [Technologies used](#technologies-used)
 * [npm packages used](#npm-packages-used)
 * [Prerequisites](#prerequisites)
