@@ -1,7 +1,6 @@
 const middleware = {
   loggedIn: (req, res, next) => {
     if (req.isAuthenticated()) {
-      // If user is authenticated with Passport
       return next();
     } else {
       req.flash("warning", "Please log in first.");
@@ -13,7 +12,7 @@ const middleware = {
     if(req.isAuthenticated()){
       req.flash("warning", "Please log out first");
       if (req.user.isAdmin) {
-        return res.redirect('/admin/dashboard');
+        return res.redirect(`/${req.user.userName}/dashboard/true`);
       } else {
         return res.redirect(`/${req.user.userName}/dashboard`);
       }

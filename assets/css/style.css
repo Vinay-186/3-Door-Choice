@@ -105,7 +105,12 @@ header .navbar-toggler:focus
 	background-color: #1fa64e;
 }
 
-
+#welcome{
+    background-image: url('/assets/images/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
 @keyframes moveLeft {
 	from { right: -100px; }
 	to { right: 0px; }

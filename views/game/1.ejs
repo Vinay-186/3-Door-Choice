@@ -1,0 +1,35 @@
+<main>
+	<%- include('../partials/userSidebar') %>
+	<div id="main-wrapper">
+        <h3 class="text-center">General Awareness Puzzle !!</h3>
+        <form id="quiz-form" action="/<%= currentUser.userName %>/add/data/game/1" method="POST">
+            <ul id="quiz-list">
+                <% for(let i = 0; i < q.length ; i++) { %>
+                    <li>
+                    <h5>Q<%=i+1%>. <%=q[i].question%></h5>
+                    <div id="q-answer" class="q<%=i+1%>-answer">
+                        <% for(let j = 0; j < q[i].answer.length ; j++) { %>
+                            <%if(q[i].answer[j] !== ' ') {%>
+                               <input class="form-control px-1" type="text" maxlength="1" name="q<%=i+1%>-answer-<%=j+1%>" value="">
+                            <%}else {%>
+                                <input type="text" maxlength="1" name="q<%=i+1%>-hyp" value="-" style="visibility: hidden;">
+                            <%}%>    
+                        <%}%>
+                    </div>
+                    <div id="q-hint">
+                        <button type="button" class="q<%=i+1%>-hint btn-xxs btn-primary">Hint</button>
+                    </div>
+                    </li>
+                <%}%>
+            </ul>
+            <div class="text-center">
+            <button class="b1 btn text-center" type="button" name="btn1">Get Results!</button>
+            </div>
+            <p id="result">Your Result is <input type='text' class='q-result form-control' value="<%= currentUser.gameScore[0]? currentUser.gameScore[0] : 0 %>" disabled> correct answers.</p>
+            <div id="g1-submit" class="g1-submit text-center">
+            <input type="hidden" name="score" id="data-score" value="<%= currentUser.gameScore[0]? currentUser.gameScore[0] : 0 %>">
+            <button type="submit" class="btn">Submit</button>
+            </div>
+        </form>
+	</div>
+</main>

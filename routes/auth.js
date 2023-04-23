@@ -60,7 +60,7 @@ router.post("/auth/login", middleware.notLoggedIn,
 		successFlash: true
 	}), (req,res) => {
         if(req.user.isAdmin){
-            res.redirect(req.session.returnTo || `/admin/dashboard`);
+            res.redirect(req.session.returnTo || `/${req.user.userName}/dashboard/true`);
         }
         else res.redirect(req.session.returnTo || `/${req.user.userName}/dashboard`);
 	}

@@ -1,0 +1,21 @@
+#wordContainer {
+    margin-top: 100px;
+    font-size: 24px;
+}
+.bor{
+    border : 1px solid red;
+    height: 100vh;
+}
+#userInput {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#door-3-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+} 

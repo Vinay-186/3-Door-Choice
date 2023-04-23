@@ -7,10 +7,19 @@
 			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
 			<h5 class="m-0 color-theme d-inline-block">Dashboard</h5>
 		</div>
-		
-		<div class="d-flex gap-3 flex-wrap m-4 text-white">
-				
+		<div class="d-flex gap-3 flex-wrap m-4">
+			<% for (let i = 0; i < users.length; i++) { %>
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title"><%= users[i].userName %></h5>
+						<h6 class="card-subtitle mb-2 text-muted"><%= users[i].email %></h6>
+						<% for (let j = 0; j < users[i].gameScore.length; j++) { %>
+							<p class="card-text">Game-<%= j + 1 %> Score : <%= users[i].gameScore[j] || 0 %></p>
+						<% } %>
+						<p class="card-text">Total Score: <%= users[i].gameScore.reduce((acc, val) => acc + (val || 0), 0) %></p>
+						</div>
+				</div>
+			<% } %>
 		</div>
-		
 	</div>
 </main>

@@ -1,4 +1,5 @@
 const path = window.location.pathname;
+console.log(path)
 const items = document.querySelectorAll("#sidebar-nav a");
 const activeItem = [].slice.call(items).find(item => item.getAttribute("href") == path);
 if(activeItem) {

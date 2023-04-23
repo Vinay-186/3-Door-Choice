@@ -1,0 +1,39 @@
+<main>
+	<%- include('../partials/userSidebar') %>
+	<div id="main-wrapper">
+        <h3 class="text-center">Jumbled Puzzle !!</h3>
+        <form id="g2-quiz-form" action="/<%= currentUser.userName %>/add/data/game/2" method="POST">
+            <ul id="g2-quiz-list" class="container">
+                <% for(let i = 0; i < jum.length ; i++) { %>
+                    <li class="row">
+                        <div class="col-md-12 col-sm-10">
+                    <h5>Q.<%=i+1%></h5>
+                    <p class="p-hints"></p>
+                    <h6 id="j-answer">
+                        <%for(let j = 0; j < jum[i].jumble.length; j++){%>
+                            <input class="form-control px-1" type="text" maxlength="1" name="j<%=i+1%>-jumbled-<%=j+1%>" value="<%= jum[i].jumble[j]%>" disabled>
+                        <%}%>
+                    </h6>
+                    <div id="j-answer" class="j<%=i+1%>-answer">
+                        <% for(let j = 0; j < jum[i].answer.length ; j++) { %>
+                            <input class="form-control px-1" type="text" maxlength="1" name="j<%=i+1%>-answer-<%=j+1%>" value="">  
+                        <%}%>
+                    </div>
+                    <div id="j-hint" >
+                        <button type="button" class="j<%=i+1%>-hint btn-xxs btn-primary">Hint</button>
+                    </div>
+                        </div>
+                    </li>
+                <%}%>
+            </ul>
+            <div class="text-center">
+            <button class="g2-b1 btn text-center" type="button" name="btn1">Get Results!</button>
+            </div>
+            <p id="j-result">Your Result is <input type='text' class='j-result form-control' value="<%= currentUser.gameScore[1]? currentUser.gameScore[1] : 0 %>" disabled> correct answers.</p>
+            <div id="g2-submit" class="g2-submit text-center">
+            <input type="hidden" name="score" id="g2-data-score" value="<%= currentUser.gameScore[1]? currentUser.gameScore[1] : 0 %>">
+            <button type="submit" class="btn">Submit</button>
+            </div>
+        </form>
+	</div>
+</main>

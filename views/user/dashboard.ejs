@@ -7,8 +7,37 @@
 			<span class="me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
 			<h5 class="m-0 color-theme d-inline-block">Dashboard</h5>
 		</div>
-		<div>
-			<span class="ms-3">Hi <%= currentUser.userName %>!!</span>
-		</div>
+		<div class="container text-center">
+			<div class="row align-items-center">
+			  <div class="col col-md-4">
+				<div class="card">
+				  <div class="card-body">
+					<h5 class="card-title">Test Your General Knowledge</h5>
+					<p class="card-text">Test your general knowledge with this fun puzzle game!</p>
+					<a class="btn btn-dark" href="/<%= currentUser.userName %>/description/1">Go to Door1</a>
+				  </div>
+				</div>
+			  </div>
+			  <div class="col col-md-4">
+				<div class="card">
+				  <div class="card-body">
+					<h5 class="card-title">Test Your Vocabulary and Language Skills</h5>
+					<p class="card-text">Test your vocabulary and language skills with this fun jumble word puzzle!</p>
+					<a class="btn btn-dark" href="/<%= currentUser.userName %>/description/2">Go to Door2</a>
+				  </div>
+				</div>
+			  </div>
+			  <div class="col col-md-4">
+				<div class="card">
+				  <div class="card-body">
+					<h5 class="card-title">Test Your Ability to Recognize Colors</h5>
+					<p class="card-text">Test your ability to recognize colors with this fun and challenging game!</p>
+					<a class="btn btn-dark" href="/<%= currentUser.userName %>/description/3">Go to Door3</a>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+					
 	</div>
 </main>

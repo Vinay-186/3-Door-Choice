@@ -1,0 +1,53 @@
+form#quiz-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+ul#quiz-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#quizlist li {
+    margin-bottom: 10px;
+}
+
+button[type="submit"]#g1, .b1 {
+    display: block;
+    margin: 20px auto;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Add styles for hint buttons and answer boxes */
+#quiz-list li {
+    position: relative;
+}
+
+#quiz-list li button[type="button"]{
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+#q-answer input[type="text"], .q-result {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+#q-answer {
+    display: flex;
+}
+
+#q-hint {
+    margin-top: 5px;
+}
+
+.g1-submit{
+    display: none;
+}

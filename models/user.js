@@ -15,6 +15,10 @@ const userSch = new mongoose.Schema({
     isAdmin : {
         type : Boolean, 
         default : false,
+    },
+    gameScore : {
+        type : Array,
+        default : [undefined,undefined,undefined]
     }
 });
 
