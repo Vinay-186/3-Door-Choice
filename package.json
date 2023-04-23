@@ -4,6 +4,8 @@
   "description": "An interactive web-based game that challenges players to make the smart choices among 3 doors on each level.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js -e html,css,js,ejs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
