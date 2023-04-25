@@ -27,12 +27,6 @@ button[type="submit"]#g1, .b1 {
     position: relative;
 }
 
-#quiz-list li button[type="button"]{
-    position: absolute;
-    top: 30px;
-    right: 0;
-}
-
 #q-answer input[type="text"], .q-result {
     width: 30px;
     height: 30px;
@@ -45,7 +39,7 @@ button[type="submit"]#g1, .b1 {
 }
 
 #q-hint {
-    margin-top: 5px;
+    margin-left: 5px;
 }
 
 .g1-submit{

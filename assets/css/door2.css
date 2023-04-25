@@ -27,12 +27,6 @@ button[type="submit"], .g2-b1 {
     position: relative;
 }
 
-#g2-quiz-list li button[type="button"]{
-    position: absolute;
-    top: 30px;
-    right: 0;
-}
-
 #j-answer input[type="text"], .j-result {
     width: 30px;
     height: 30px;

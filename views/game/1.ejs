@@ -1,13 +1,13 @@
 <main>
 	<%- include('../partials/userSidebar') %>
 	<div id="main-wrapper">
-        <span class="me-3 bg-white px-2" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-        <h3 class="text-center bg-white ms-5 me-5">General Awareness Puzzle !!</h3>
+        <span class="me-3 bg-white1 px-2" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+        <h3 class="text-center bg-white1 ms-5 me-5">General Awareness Puzzle !!</h3>
         <form id="quiz-form" action="/<%= currentUser.userName %>/add/data/game/1" method="POST">
             <ul id="quiz-list">
                 <% for(let i = 0; i < q.length ; i++) { %>
                     <li>
-                    <h5 class="bg-white d-inline">Q<%=i+1%>. <%=q[i].question%></h5>
+                    <h5 class="bg-white1 d-inline">Q<%=i+1%>. <%=q[i].question%></h5>
                     <div id="q-answer" class="q<%=i+1%>-answer">
                         <% for(let j = 0; j < q[i].answer.length ; j++) { %>
                             <%if(q[i].answer[j] !== ' ') {%>
@@ -16,9 +16,9 @@
                                 <input type="text" maxlength="1" name="q<%=i+1%>-hyp" value="-" style="visibility: hidden;">
                             <%}%>    
                         <%}%>
-                    </div>
-                    <div id="q-hint">
-                        <button type="button" class="q<%=i+1%>-hint btn-xxs btn-primary">Hint</button>
+                        <div id="q-hint">
+                            <button type="button" class="q<%=i+1%>-hint btn-xxs btn-primary">Hint</button>
+                        </div>
                     </div>
                     </li>
                 <%}%>
@@ -26,7 +26,7 @@
             <div class="text-center">
             <button class="b1 btn text-center" type="button" name="btn1">Get Results!</button>
             </div>
-            <p id="result" class="bg-white text-center">Your Result is <input type='text' class='q-result form-control' value="<%= currentUser.gameScore[0]? currentUser.gameScore[0] : 0 %>" disabled> correct answers.</p>
+            <p id="result" class="bg-white1 text-center">Your Result is <input type='text' class='q-result form-control' value="<%= currentUser.gameScore[0]? currentUser.gameScore[0] : 0 %>" disabled> correct answers.</p>
             <div id="g1-submit" class="g1-submit text-center">
             <input type="hidden" name="score" id="data-score" value="<%= currentUser.gameScore[0]? currentUser.gameScore[0] : 0 %>">
             <button type="submit" class="btn">Submit</button>
