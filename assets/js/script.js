@@ -20,3 +20,10 @@ if(btn) {
 		document.querySelector("#sidebar").classList.toggle("sidebar-hide");
 	});
 }
+
+let doors = document.querySelectorAll('.door');
+for(let d of doors){
+	d.addEventListener('click', ()=>{
+		d.classList.toggle('open');
+	})
+}
