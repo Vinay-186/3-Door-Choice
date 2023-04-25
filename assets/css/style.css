@@ -105,7 +105,7 @@ header .navbar-toggler:focus
 	background-color: #1fa64e;
 }
 
-#welcome{
+body{
     background-image: url('/assets/images/background.jpg');
     background-size: cover;
     background-position: center center;

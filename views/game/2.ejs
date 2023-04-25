@@ -1,15 +1,15 @@
 <main>
 	<%- include('../partials/userSidebar') %>
 	<div id="main-wrapper">
-        <span class="px-2 me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
-        <h3 class="text-center">Jumbled Puzzle !!</h3>
+        <span class="me-3 bg-white px-2" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
+        <h3 class="text-center bg-white">Jumbled Puzzle !!</h3>
         <form id="g2-quiz-form" action="/<%= currentUser.userName %>/add/data/game/2" method="POST">
             <ul id="g2-quiz-list" class="container">
                 <% for(let i = 0; i < jum.length ; i++) { %>
                     <li class="row">
                         <div class="col-md-12 col-sm-10">
-                    <h5>Q.<%=i+1%></h5>
-                    <p class="p-hints"></p>
+                    <h5 class="bg-white d-inline">Q.<%=i+1%></h5>
+                    <p class="p-hints bg-white"></p>
                     <h6 id="j-answer">
                         <%for(let j = 0; j < jum[i].jumble.length; j++){%>
                             <input class="form-control px-1" type="text" maxlength="1" name="j<%=i+1%>-jumbled-<%=j+1%>" value="<%= jum[i].jumble[j]%>" disabled>
@@ -30,7 +30,7 @@
             <div class="text-center">
             <button class="g2-b1 btn text-center" type="button" name="btn1">Get Results!</button>
             </div>
-            <p id="j-result">Your Result is <input type='text' class='j-result form-control' value="<%= currentUser.gameScore[1]? currentUser.gameScore[1] : 0 %>" disabled> correct answers.</p>
+            <p id="j-result" class="bg-white">Your Result is <input type='text' class='j-result form-control' value="<%= currentUser.gameScore[1]? currentUser.gameScore[1] : 0 %>" disabled> correct answers.</p>
             <div id="g2-submit" class="g2-submit text-center">
             <input type="hidden" name="score" id="g2-data-score" value="<%= currentUser.gameScore[1]? currentUser.gameScore[1] : 0 %>">
             <button type="submit" class="btn">Submit</button>
