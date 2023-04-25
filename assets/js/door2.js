@@ -31,7 +31,6 @@ result2.addEventListener("click", (e) => {
     for(let i = 0; i < jum.length; i++){
         const answer = jum[i].answer
         let child = answerElement2[i].children;
-        console.log(child);
         let ans = '';
         for(let c of child){
             ans += c.value;

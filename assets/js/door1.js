@@ -20,7 +20,6 @@
         answer: "Mount-Everest"
     }
 ];
-
     const answerElement = document.querySelectorAll('#q-answer');
     const hintElement = document.querySelectorAll('#q-hint');
     for (let i = 0; i < q.length; i++) {
@@ -52,11 +51,11 @@ result.addEventListener("click", (e) => {
     for(let i = 0; i < q.length; i++){
         const answer = q[i].answer
         let child = answerElement[i].children;
-        console.log(child);
         let ans = '';
-        for(let c of child){
-            ans += c.value;
+        for(let j = 0; j < child.length-1; j++){
+            ans += child[j].value;
         }
+        console.log(ans);
         if(ans.toLowerCase() === answer.toLowerCase()) total++;
     }
     const input_tag = document.querySelector('#result input');
@@ -90,8 +89,6 @@ window.addEventListener('DOMContentLoaded', () => {
       const inputField = form.querySelector(`[name="${key}"]`);
       if(key === 'score'){
         const input_tag = document.querySelector('#result input');
-        console.log(key);
-        console.log(value);
         input_tag.value = `${value}`;
       }
       if (inputField) {
@@ -100,7 +97,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
   const disable = sessionStorage.getItem('disableButton'); 
-  console.log(disable);
   if(disable){
     result.disabled=true;
     const div_elem = document.querySelector('#g1-submit');
