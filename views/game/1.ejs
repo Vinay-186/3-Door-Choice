@@ -1,6 +1,7 @@
 <main>
 	<%- include('../partials/userSidebar') %>
 	<div id="main-wrapper">
+        <span class="px-2 me-3" id="sidebar-toggler-btn"><i class="fas fa-bars"></i></span>
         <h3 class="text-center">General Awareness Puzzle !!</h3>
         <form id="quiz-form" action="/<%= currentUser.userName %>/add/data/game/1" method="POST">
             <ul id="quiz-list">
