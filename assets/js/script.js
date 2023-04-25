@@ -1,5 +1,4 @@
 const path = window.location.pathname;
-console.log(path)
 const items = document.querySelectorAll("#sidebar-nav a");
 const activeItem = [].slice.call(items).find(item => item.getAttribute("href") == path);
 if(activeItem) {
@@ -22,8 +21,12 @@ if(btn) {
 }
 
 let doors = document.querySelectorAll('.door');
-for(let d of doors){
-	d.addEventListener('click', ()=>{
-		d.classList.toggle('open');
+let cards = document.querySelectorAll('.card#dash');
+for(let i = 0; i < doors.length; i++){
+	doors[i].addEventListener('click', () =>{
+		doors[i].classList.toggle('open');
+		setTimeout(()=>{
+			cards[i].style.zIndex = 1;		
+		},700);
 	})
 }
