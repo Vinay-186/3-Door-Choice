@@ -11,7 +11,7 @@
 		<input type="text" id="userInput" placeholder="Enter Color of the Word">
 		<button id="door-3-btn" disabled>Next</button>
 		<br>
-		<p id="timer" class="timer"></p>
+		<p id="timer" class="timer bg-white1"></p>
 		<button id="start" class="btn">Start</button>
 		<form action="/<%= currentUser.userName %>/add/data/game/3" method="POST">
         <p id="result" class="ms-5 me-5 bg-white1">Your Result is <input type='text' class='g3-result text-center form-control' value="<%= currentUser.gameScore[2]? currentUser.gameScore[2] : 0 %>" disabled> correct answers.</p>
